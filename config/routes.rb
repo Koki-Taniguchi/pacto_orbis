@@ -1,3 +1,23 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :admins
+  devise_for :users
+
+  scope module: :users do
+    resource :users
+    resources :items
+    resources :cart_items
+    resources :orders
+    resources :addresses
+  end
+
+  namespace :admins do
+    resources :users
+    resources :items
+    resources :orders
+    resources :labels
+    resources :artists
+    resources :genres
+    resources :addresses
+  end
+
 end
