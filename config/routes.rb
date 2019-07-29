@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     }
 
   scope module: :users do
+    root 'items#index' # ユーザーログイン機能動作確認のため担当ではないが記述
     resource :users
     resources :items
     resources :cart_items
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
+    root 'items#index'# 管理者ログイン機能動作確認のため担当ではないが記述
     resources :users
     resources :items
     resources :orders
