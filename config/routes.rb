@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
-  scope module: :devise do
-    devise_for :admins, :controller => {
+    devise_for :admins, :controllers => {
       :sessions => "devise/admins/sessions",
       :registrations => "devise/admins/registrations"
     }
-    devise_for :users, :controller => {
+    devise_for :users, :controllers => {
       :sessions => "devise/users/sessions",
       :registrations => "devise/users/registrations"
     }
-  end
 
   scope module: :users do
     resource :users
