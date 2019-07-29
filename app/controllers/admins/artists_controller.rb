@@ -1,4 +1,4 @@
-class Admin::LabelsController < ApplicationController
+class Admins::ArtistsController < ApplicationController
   def index
 
   end
@@ -16,13 +16,13 @@ class Admin::LabelsController < ApplicationController
   end
 
   def destroy
-    
+
   end
 
   private
 
-  def label_params
-    params.require(:label).permit(:name)
+  def artist_params
+    params.require(:artist).permit(:name)
   end
 
 end
