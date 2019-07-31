@@ -1,9 +1,9 @@
-<h1>アーティスト一覧</h1>
+<h1>レーベル一覧</h1>
 
 <div class="container">
   <div class="row">
     <div class="col-lg-3">
-      <%= form_with(model: [:admins, @artist], local: true) do |f| %>
+      <%= form_with(model: [:admins, @label], local: true) do |f| %>
         <div>
           <%= f.label :name %><br>
           <%= f.text_field :name %>
@@ -13,11 +13,11 @@
     </div>
     <div class="col-lg-9">
       <table>
-        <% @artists.each do |artist| %>
+        <% @labels.each do |label| %>
           <tr>
-            <td><%= artist.name %></td>
-            <td><%= link_to "編集", edit_admins_artist_path(artist) %></td>
-            <td><%= link_to "削除", admins_artist_path(artist), method: :delete %></td>
+            <td><%= label.name %></td>
+            <td><%= link_to "編集", edit_admins_label_path(label) %></td>
+            <td><%= link_to "削除", admins_label_path(label), method: :delete %></td>
           </tr>
         <% end %>
       </table>
