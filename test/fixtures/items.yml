@@ -2,10 +2,10 @@
 
 one:
   artist_id: 1
-  genle_id: 1
+  genre_id: 1
   label_id: 1
 
 two:
   artist_id: 1
-  genle_id: 1
+  genre_id: 1
   label_id: 1
