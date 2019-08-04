@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
-  scope module: :devise do
-    devise_for :admins, :controller => {
+    devise_for :admins, :controllers => {
       :sessions => "devise/admins/sessions",
       :registrations => "devise/admins/registrations"
     }
-    devise_for :users, :controller => {
+    devise_for :users, :controllers => {
       :sessions => "devise/users/sessions",
       :registrations => "devise/users/registrations"
     }
-  end
 
   scope module: :users do
+    root 'items#index' # ユーザーログイン機能動作確認のため担当ではないが記述
     resource :users
     resources :items
     resources :cart_items
@@ -19,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
+    root 'items#index'# 管理者ログイン機能動作確認のため担当ではないが記述
     resources :users
     resources :items
     resources :orders
