@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2019_07_20_123900) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "genles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2019_07_20_123900) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "artist_id"
-    t.integer "genle_id"
+    t.integer "genre_id"
     t.integer "label_id"
     t.string "title", null: false
     t.integer "price", null: false
