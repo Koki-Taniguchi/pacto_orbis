@@ -1,0 +1,11 @@
+<div class="nested-fields">
+  <div>
+  <%= link_to_remove_association "remove disk", f %>
+    <%= f.fields_for :songs do |song| %>
+      <%= render 'song_fields', f: song %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add song', f, :songs %>
+    </div>
+  </div>
+</div>

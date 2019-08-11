@@ -1,0 +1,55 @@
+<%= form_with(model: [:admins, @item], local: true) do |f| %>
+  <div class="form">
+    <%= f.label :artist_id %>
+    <%= f.select :artist_id, options_from_collection_for_select(Artist.all, :id, :name) %>
+  </div>
+
+  <div class="form">
+    <%= f.label :label_id %>
+    <%= f.select :label_id, options_from_collection_for_select(Label.all, :id, :name) %>
+  </div>
+
+  <div class="form">
+    <%= f.label :genre_id %>
+    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+  </div>
+
+  <div class="form">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="form">
+    <%= f.label :jacket_image %>
+    <%= f.attachment_field :jacket_image %>
+  </div>
+
+  <div class="form">
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div class="form">
+    <%= f.label :status %>
+    <%= f.select :status, options_for_select(Item.statuses) %>
+  </div>
+
+  <div class="form">
+    <%= f.label :stock %>
+    <%= f.number_field :stock %>
+  </div>
+
+  <div>
+  <div class="links">
+      <%= link_to_add_association 'add disk', f, :disks %>
+    </div>
+    <%= f.fields_for :disks do |disk| %>
+      <%= render 'disk_fields', f: disk %>
+    <% end %>
+  </div>
+
+  <div class="submit">
+    <%= f.submit "登録" %>
+  </div>
+
+<% end %>
