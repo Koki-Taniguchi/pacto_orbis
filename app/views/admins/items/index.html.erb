@@ -1,1 +1,12 @@
-<h1>管理者商品一覧ページ</h1><!-- 管理者ログイン機能動作確認のための記述なのでコンフリクト時は消してください -->
+<div>
+<% @items.each do |item| %>
+  <div>
+    <%= attachment_image_tag item, :jacket_image, :fill, 100, 100 %>
+    <h1><%= item.title %> - <%= item.artist.name %></h1>
+    <div>
+      <span><%= item.first_song.title %>...</span><span>残り<%= item.stock %></span>
+      <%= link_to "show", admins_item_path(item) %>
+    </div>
+  </div>
+<% end %>
+</div>

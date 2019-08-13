@@ -2,8 +2,8 @@ FactoryBot.define do
   # 稀にカタカナの名前が入るのでコメントアウト
   # first_name = Faker::Japanese::Name.first_name
   # last_name = Faker::Japanese::Name.last_name
-  phone = Faker::Number.number(11)
-  postal_code = Faker::Number.number(7)
+  phone = Faker::Number.number(digits: 11)
+  postal_code = Faker::Number.number(digits: 7)
   # address = Gimei.address
   # street = Faker::Number.number(4) + '-' + Faker::Number.number(3)
 
