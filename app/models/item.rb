@@ -5,6 +5,7 @@ class Item < ApplicationRecord
 
   has_many :disks
   has_many :cart_items
+  has_many :order_details
   accepts_nested_attributes_for :disks, reject_if: :all_blank, allow_destroy: true
 
   attachment :jacket_image

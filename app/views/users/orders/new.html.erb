@@ -1,0 +1,62 @@
+<h2>送付先</h2>
+<div>
+  <%= form_with model: Order.new, local: true, class: "h-adr" do |f| %>
+  <div>
+    <label><%= f.radio_button :address_select, 'self' %>この住所を使う</label>
+    <p>
+      <%= current_user.postal_code %><br>
+      <%= current_user.address %>
+    </p>
+  </div>
+  <% current_user.addresses.each do |address| %>
+  <div>
+    <label><%= f.radio_button :address_select, address.id %>この住所を使う</label>
+    <p>
+      <%= address.name %><br>
+      <%= address.postal_code %><br>
+      <%= address.address %>
+    </p>
+    </div>
+  <% end %>
+  <div>
+    <label><%= f.radio_button :address_select, 'new' %>新しい住所を追加</label><br>
+    <span>氏名</span><%= f.text_field :new_address_name %><br>
+    <span class="p-country-name" style="display:none;">Japan</span>
+    <span>郵便番号</span><%= f.text_field :new_postal_code, class: 'p-postal-code' %><br>
+    <span>住所</span><%= f.text_field :new_address, class: 'p-region p-locality p-street-address p-extended-address' %>
+  </div>
+
+  <h2>お支払い方法</h2>
+  <div>
+    <label><%= f.radio_button :payment, 0 %>代引</label><br>
+    <label><%= f.radio_button :payment, 1 %>銀行振込</label>
+
+    <table>
+      <tr>
+        <th>銀行名</th>
+        <td>abcBank</td>
+      </tr>
+      <tr>
+        <th>支店名</th>
+        <td>abcBank</td>
+      </tr>
+      <tr>
+        <th>預金科目</th>
+        <td>abcBank</td>
+      </tr>
+      <tr>
+        <th>口座番号</th>
+        <td>abcBank</td>
+      </tr>
+      <tr>
+        <th>口座名義</th>
+        <td>abcBank</td>
+      </tr>
+    </table>
+
+    <div>
+      <%= f.submit '購入確定' %>
+    </div>
+  </div>
+  <% end %>
+</div>

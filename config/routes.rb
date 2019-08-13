@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     resource :users
     resources :items, only: [:index, :show]
     resources :cart_items
-    resources :orders
+    resources :orders, only: [:index, :new, :create] do
+      collection do
+        get :Completion
+      end
+    end
     resources :addresses
   end
 

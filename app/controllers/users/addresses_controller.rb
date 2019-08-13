@@ -1,6 +1,6 @@
 class Users::AddressesController < ApplicationController
   def create
-
+    
   end
 
   def edit
