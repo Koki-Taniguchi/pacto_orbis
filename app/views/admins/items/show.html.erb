@@ -1,0 +1,29 @@
+<div>
+  <p><%= @item.genre.name %>/<%= @item.label.name %></p>
+  <h1><%= @item.title %>-<%= @item.artist.name %></h1>
+    <%= attachment_image_tag @item, :jacket_image, :fill, 100, 100 %>
+  <div>
+    <%= number_to_currency(@item.price, precision: 0, unit: '¥') %> | <%= Item.statuses.key(@item.status) %>
+  <div>
+  <select id="select-disk">
+  <% @item.disks.each_with_index do |disk, index| %>
+  <option value="<%= index+1 %>">ディスク<%= index+1 %></option>
+  <% end %>
+  </select>
+
+  <div class="all-disk">
+    <% @item.disks.each_with_index do |disk, index| %>
+      <div id="disk-<%= index+1 %>" class="uncurrent-disk">
+        <ol>
+        <% disk.songs.each do |song| %>
+          <li><%= song.title %></li>
+        <% end %>
+        </ol>
+      </div>
+    <% end %>
+  </div>
+  <div><span>在庫数： <%= @item.stock %>枚</span></div>
+  <div>
+    <%= link_to '編集', edit_admins_item_path(@item) %> <%= link_to '削除', admins_item_path(@item), method: :delete %>
+  </div>
+</div>

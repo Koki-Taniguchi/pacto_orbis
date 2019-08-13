@@ -1,6 +1,6 @@
 FactoryBot.define do
-  postal_code = Faker::Number.number(7)
-  total_price = Faker::Number.number(5)
+  postal_code = Faker::Number.number(digits: 7)
+  total_price = Faker::Number.number(digits: 5)
   address = Gimei.address.kanji
 
   factory :order do

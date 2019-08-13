@@ -13,4 +13,8 @@ class Item < ApplicationRecord
     sold_out: false
   }
 
+  def first_song
+    disks.first.songs.first
+  end
+
 end

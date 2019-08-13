@@ -1,10 +1,11 @@
 class Admins::ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+
   def index
     params[:search] ? @items = Item.search(params[:search]) : @items = Item.all
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def new
@@ -23,15 +24,19 @@ class Admins::ItemsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
-
+    if @item.update
+      redirect_to admins_item_path(@item)
+    else
+      render :edit
+    end
   end
 
   def destroy
-
+    @item.destroy
+    redirect_to admins_items_path
   end
 
   private
@@ -43,5 +48,9 @@ class Admins::ItemsController < ApplicationController
         ]
       ]
     )
+  end
+
+  def set_item
+     @item = Item.find(params[:id])
   end
 end
