@@ -1,0 +1,20 @@
+<div>
+<% @cart_items.each do |cart_item| %>
+  <div>
+  <%= form_with model: cart_item, local: true do |f| %>
+    <%= attachment_image_tag cart_item.item, :jacket_image, :fill, 100, 100 %>
+    <h1><%= cart_item.item.title %> - <%= cart_item.item.artist.name %></h1>
+    <div>
+      <span><%= number_to_currency(cart_item.item.price, precision: 0, unit: '¥') %> × <%= f.number_field :amount %>枚</span>
+    </div>
+    <div>
+      <span>在庫 <%= cart_item.item.stock %>枚</span><br>
+      <%= cart_item.item.statuses %>
+      <span class="side-links">
+        <%= f.submit '追加' %> | <%= link_to '削除', cart_item_path(cart_item), method: :delete %>
+      </span>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>

@@ -11,4 +11,6 @@ class User < ApplicationRecord
   validates :phone, presence: true, length: { in: 10..11 }, numericality: { only_integer: true }
   validates :postal_code, presence: true, length: { in: 5..9 }, format: { with: /\A\w+\z/ }
   validates :address, presence: true
+
+  has_many :cart_items
 end

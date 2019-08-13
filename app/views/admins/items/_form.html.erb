@@ -31,7 +31,7 @@
 
   <div class="form">
     <%= f.label :status %>
-    <%= f.select :status, options_for_select(Item.statuses) %>
+    <%= f.select :status, options_for_select(Item.select_status) %>
   </div>
 
   <div class="form">

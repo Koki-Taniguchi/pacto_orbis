@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   scope module: :users do
     root 'items#index' # ユーザーログイン機能動作確認のため担当ではないが記述
     resource :users
-    resources :items
+    resources :items, only: [:index, :show]
     resources :cart_items
     resources :orders
     resources :addresses

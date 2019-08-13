@@ -24,6 +24,12 @@
   </div>
   <div><span>在庫数： <%= @item.stock %>枚</span></div>
   <div>
-    <%= link_to '編集', edit_admins_item_path(@item) %> <%= link_to '削除', admins_item_path(@item), method: :delete %>
+    <%= form_with model: CartItem.new, local: true do |f| %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.number_field :amount %>
+      <span>枚</span>
+
+      <div><%= f.submit 'カートに追加' %></div>
+    <% end %>
   </div>
 </div>
