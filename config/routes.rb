@@ -1,24 +1,24 @@
 Rails.application.routes.draw do
-    devise_for :admins, :controllers => {
-      :sessions => "devise/admins/sessions",
-      :registrations => "devise/admins/registrations"
-    }
-    devise_for :users, :controllers => {
-      :sessions => "devise/users/sessions",
-      :registrations => "devise/users/registrations"
-    }
-
   scope module: :users do
-    root 'items#index' # ユーザーログイン機能動作確認のため担当ではないが記述
-    resource :users
+    root 'items#index'
+    resource :users, only: [:show, :edit, :update] do
+      collection do
+        get :unsubscribe_confirm
+        get :unsubscribe
+      end
+    end
     resources :items, only: [:index, :show]
     resources :cart_items
-    resources :orders
+    resources :orders, only: [:index, :new, :create] do
+      collection do
+        get :completion
+      end
+    end
     resources :addresses
   end
 
   namespace :admins do
-    root 'items#index'# 管理者ログイン機能動作確認のため担当ではないが記述
+    root 'items#index'
     resources :users
     resources :items
     resources :orders
@@ -27,5 +27,17 @@ Rails.application.routes.draw do
     resources :genres
     resources :addresses
   end
+
+  devise_for :admins, :controllers => {
+      :sessions => "devise/admins/sessions",
+      :registrations => "devise/admins/registrations"
+    }
+    devise_for :users, :controllers => {
+      :sessions => "devise/users/sessions",
+      :registrations => "devise/users/registrations"
+    }
+    devise_scope :user do
+     get '/users/sign_out' => 'devise/users/sessions#destroy'
+   end
 
 end

@@ -1,0 +1,8 @@
+<h1>配送先住所編集</h1>
+<%= form_with model: @address, local: true do |f| %>
+  <span>氏名</span><%= f.text_field :name %><br>
+  <span class="p-country-name" style="display:none;">Japan</span>
+  <span>郵便番号</span><%= f.text_field :postal_code, class: 'p-postal-code' %><br>
+  <span>住所</span><%= f.text_field :address, class: 'p-region p-locality p-street-address p-extended-address' %><br>
+  <%= f.submit '保存' %><%= link_to '戻る', new_order_path %>
+<% end %>

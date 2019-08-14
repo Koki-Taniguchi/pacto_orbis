@@ -1,0 +1,16 @@
+<h1>ユーザー編集</h1>
+<%= form_with model: @user, url: users_path, local: true do |f| %>
+  <p>名前（姓・名）</p>
+  <%= f.text_field :first_name %><%= f.text_field :last_name %>
+  <p>名前カナ（姓・名）</p>
+  <%= f.text_field :kana_first_name %><%= f.text_field :kana_last_name %>
+  <p>郵便番号</p>
+  <span class="p-country-name" style="display:none;">Japan</span>
+  <%= f.text_field :postal_code, class: 'p-postal-code' %>
+  <p>住所</p>
+  <%= f.text_field :address, class: 'p-region p-locality p-street-address p-extended-address' %>
+  <p>メールアドレス</p>
+  <%= f.text_field :email %>
+
+  <div><%= f.submit '保存' %></div>
+<% end %>
