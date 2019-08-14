@@ -14,18 +14,16 @@ class Users::OrdersController < ApplicationController
       if params[:order][:address_select] == 'self'
         order.postal_code = current_user.postal_code
         order.address = current_user.address
-        # order.name = current_user.first_name + current_user.last_name
       elsif params[:order][:address_select] == 'new'
         order.postal_code = params[:order][:new_postal_code]
         order.address = params[:order][:new_address]
-        # order.name = params[:order][:new_address_name]
       elsif params[:order][:address_select].blank?
         render :new
+        break
       else
         address = current_user.addresses.find(params[:order][:address_select])
         order.postal_code = address.postal_code
         order.address = address.address
-        # order.name = address.name
       end
 
       current_user.cart_items.each do |cart_item|
@@ -37,19 +35,18 @@ class Users::OrdersController < ApplicationController
       end
 
       order.delivery_cost = NOW_POSTAGE
-      order.total_price = order.order_details.sum { |od| od.cd_amount * od.cd_price } + NOW_POSTAGE
+      order.total_price = order.order_details.sum(&:total_price) + NOW_POSTAGE
       order.save!
     end
 
     if order.persisted?
-      redirect_to Completion_orders_path
+      redirect_to completion_orders_path
     else
       render :new
     end
   end
 
-  def Completion
-
+  def completion
   end
 
   private
