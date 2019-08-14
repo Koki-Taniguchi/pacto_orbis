@@ -19,4 +19,12 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && !is_deleted
   end
+
+  def status
+    if is_deleted
+      '退会済み'
+    else
+      '利用中'
+    end
+  end
 end

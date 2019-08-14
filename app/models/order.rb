@@ -3,6 +3,12 @@ class Order < ApplicationRecord
 
   has_many :order_details
 
+  enum select_status: {
+    "受付" => 0,
+    "商品準備中" => 1,
+    "出荷済" => 2,
+  }
+
   def display_status
     if status == 0
       '受付'
