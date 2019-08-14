@@ -1,0 +1,11 @@
+<h1>ユーザー一覧</h1>
+<table>
+  <tr><th>ユーザーネーム</th><th>ステータス</th><th></th></tr>
+  <% @users.each do |user| %>
+  <tr>
+    <th><%= user.first_name %> <%= user.last_name %></th>
+    <th><%= user.status %></th>
+    <th><%= link_to '詳細', admins_user_path(user) %> <%= link_to '削除', admins_user_path(user), method: :delete %></th>
+  </tr>
+  <% end %>
+</table>
