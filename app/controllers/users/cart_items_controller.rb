@@ -1,4 +1,4 @@
-class Users::CartItemsController < ApplicationController
+class Users::CartItemsController < Users::Base
   def index
     @cart_items = current_user.cart_items.where(user_id: current_user.id)
   end

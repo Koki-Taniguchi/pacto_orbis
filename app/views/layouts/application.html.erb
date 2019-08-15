@@ -1,17 +1,1 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>PactoOrbis</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
-  </head>
-
-  <body>
-    <%= render 'layouts/header' %>
-    <%= yield %>
-  </body>
-</html>
+<%= content_for?(:content) ? yield(:content) : yield %>

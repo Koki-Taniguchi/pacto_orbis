@@ -1,4 +1,4 @@
-class Admins::AddressesController < ApplicationController
+class Admins::AddressesController < Admins::Base
   def destroy
     address = Address.find(params[:id])
     address.destroy
