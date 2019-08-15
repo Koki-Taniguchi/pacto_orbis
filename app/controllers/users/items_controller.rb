@@ -1,4 +1,4 @@
-class Users::ItemsController < ApplicationController
+class Users::ItemsController < Users::Base
   def index
     @items = Item.where(status: true)
   end
