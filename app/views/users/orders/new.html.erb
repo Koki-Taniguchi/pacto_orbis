@@ -1,66 +1,68 @@
-<h2>送付先</h2>
-<div>
-  <%= form_with model: Order.new, local: true, class: "h-adr" do |f| %>
-  <div>
-    <label><%= f.radio_button :address_select, 'self' %>現住所を使う</label>
-    <p>
-      <%= current_user.postal_code %><br>
-      <%= current_user.address %>
-    </p>
-  </div>
-  <div class="user-address">
-  <% current_user.addresses.each do |address| %>
+<div class="container">
+  <div class="w-75 mx-auto">
+    <h2 class="m-3">送付先</h2>
+    <%= form_with model: Order.new, local: true, class: "h-adr" do |f| %>
     <div>
-      <label><%= f.radio_button :address_select, address.id %>この住所を使う</label>
-      <%= link_to '編集', edit_address_path(address) %> <%= link_to '削除', address_path(address), method: :delete %>
+      <label><%= f.radio_button :address_select, 'self' %>現住所を使う</label>
       <p>
-        <span><%= address.name %></span><br>
-        <span><%= address.postal_code %></span><br>
-        <span><%= address.address %></span>
+        <%= current_user.postal_code %><br>
+        <%= current_user.address %>
       </p>
     </div>
-  <% end %>
-  </div>
-  <div class="new_address">
-    <p>新しい住所を追加</p>
-    <span>氏名</span><input type="text" name="address[name]" id="address_name"><br>
-    <span class="p-country-name" style="display:none;">Japan</span>
-    <span>郵便番号</span><input class="p-postal-code" type="text" name="address[postal_code]" id="address_postal_code"><br>
-    <span>住所</span><input class="p-region p-locality p-street-address p-extended-address" type="text" name="address[address]" id="address_address">
-    <button type="button" class="create">作成</button>
-  </div>
-
-  <h2>お支払い方法</h2>
-  <div>
-    <label><%= f.radio_button :payment, 0 %>代引</label><br>
-    <label><%= f.radio_button :payment, 1 %>銀行振込</label>
-
-    <table>
-      <tr>
-        <th>銀行名</th>
-        <td>abcBank</td>
-      </tr>
-      <tr>
-        <th>支店名</th>
-        <td>abcBank</td>
-      </tr>
-      <tr>
-        <th>預金科目</th>
-        <td>abcBank</td>
-      </tr>
-      <tr>
-        <th>口座番号</th>
-        <td>abcBank</td>
-      </tr>
-      <tr>
-        <th>口座名義</th>
-        <td>abcBank</td>
-      </tr>
-    </table>
-
-    <div>
-      <%= f.submit '購入確定' %>
+    <div class="user-address">
+    <% current_user.addresses.each do |address| %>
+      <div>
+        <label><%= f.radio_button :address_select, address.id %>この住所を使う</label>
+        <%= link_to '編集', edit_address_path(address) %> <%= link_to '削除', address_path(address), method: :delete %>
+        <p>
+          <span><%= address.name %></span><br>
+          <span><%= address.postal_code %></span><br>
+          <span><%= address.address %></span>
+        </p>
+      </div>
+    <% end %>
     </div>
+    <div class="new_address">
+      <p class="font-weight-bold">新しい住所を追加</p>
+      <p class="my-3">氏名</p><input class="w-25" type="text" name="address[name]" id="address_name"><br>
+      <span class="p-country-name" style="display:none;">Japan</span>
+      <p class="my-3">郵便番号</p><input class="w-25 p-postal-code" type="text" name="address[postal_code]" id="address_postal_code"><br>
+      <span class="my-3">住所</p><textarea class="w-25 p-region p-locality p-street-address p-extended-address" type="text" name="address[address]" id="address_address"></textarea>
+      <button type="button" class="create btn btn-primary mb-4">作成</button>
+    </div>
+
+    <h2 class="m-3">お支払い方法</h2>
+    <div>
+      <label><%= f.radio_button :payment, 0 %>代引</label><br>
+      <label><%= f.radio_button :payment, 1 %>銀行振込</label>
+
+      <table class="table w-75">
+        <tr>
+          <th>銀行名</th>
+          <td>abcBank</td>
+        </tr>
+        <tr>
+          <th>支店名</th>
+          <td>abcBank</td>
+        </tr>
+        <tr>
+          <th>預金科目</th>
+          <td>abcBank</td>
+        </tr>
+        <tr>
+          <th>口座番号</th>
+          <td>abcBank</td>
+        </tr>
+        <tr>
+          <th>口座名義</th>
+          <td>abcBank</td>
+        </tr>
+      </table>
+
+      <div>
+        <%= f.submit '購入確定', class: 'btn btn-primary' %>
+      </div>
+    </div>
+    <% end %>
   </div>
-  <% end %>
 </div>

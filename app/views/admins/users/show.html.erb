@@ -1,4 +1,5 @@
-<div>
+<div class="container">
+<div class="my-5">
   <ul class="nav nav-tabs">
     <li class="nav-item">
       <a href="#tab1" class="nav-link active" data-toggle="tab">ユーザー詳細</a>
@@ -15,7 +16,7 @@
 <div class="tab-content">
   <div id="tab1" class="tab-pane active container">
     <h2>ユーザー情報</h2>
-    <table>
+    <table class="table">
       <tr><th>名前（姓・名）</th><td><%= @user.first_name %><%= @user.last_name %></td></tr>
       <tr><th>名前（カナ姓・カナ名）</th><td><%= @user.kana_first_name %><%= @user.kana_last_name %></td></tr>
       <tr><th>郵便番号</th><td><%= @user.postal_code %></td></tr>
@@ -36,24 +37,29 @@
 
   <div id="tab3" class="tab-pane container">
     <% @user.orders.each do |order| %>
-      <div>
+    <div class="border row p-3 m-3">
+      <div class="col-4 offset-2 py-3">
         <p><%= order.created_at.strftime("%Y年%m月%d日") %></p>
-        <table>
-        <tr><th>商品タイトル</th><th>枚数</th><th>合計金額</th></tr>
-        <% order.order_details.each do |od| %>
-        <tr><td><%= od.item.title %></td><td><%= od.cd_amount %></td><td><%= number_to_currency(od.total_price, precision: 0, unit: '¥') %></td></tr>
-        <% end %>
+        <table class="table">
+          <tr><th>商品タイトル</th><th>枚数</th><th>合計金額</th></tr>
+          <% order.order_details.each do |od| %>
+            <tr><td><%= od.item.title %></td><td><%= od.cd_amount %></td><td><%= number_to_currency(od.total_price, precision: 0, unit: '¥') %></td></tr>
+          <% end %>
         </table>
+      </div>
+      <div class="col-4 offset-2 py-5">
         <p>ステータス：<%= order.display_status %></p>
         <p>支払方法：<%= order.display_payment %></p>
         <p>発送先：<%= order.address %></p>
         <p>送料：<%= number_to_currency(order.delivery_cost, precision: 0, unit: '¥') %></p>
         <p>合計金額：<%= number_to_currency(order.total_price, precision: 0, unit: '¥') %></p>
       </div>
-    <% end %>
+    </div>
+  <% end %>
   </div>
 
   <div class="links">
     <%= link_to '編集', edit_admins_user_path(@user) %> <%= link_to '削除', admins_user_path(@user), method: :delete %>
   </div>
+</div>
 </div>

@@ -1,11 +1,13 @@
-<h1>ユーザー一覧</h1>
-<table>
+<div class="container">
+<h1 class="m-5">ユーザー一覧</h1>
+<table class="table">
   <tr><th>ユーザーネーム</th><th>ステータス</th><th></th></tr>
   <% @users.each do |user| %>
   <tr>
-    <th><%= user.first_name %> <%= user.last_name %></th>
-    <th><%= user.status %></th>
-    <th><%= link_to '詳細', admins_user_path(user) %> <%= link_to '削除', admins_user_path(user), method: :delete %></th>
+    <td><%= user.first_name %> <%= user.last_name %></td>
+    <td><%= user.status %></td>
+    <td><%= link_to '詳細', admins_user_path(user) %> <%= link_to '削除', admins_user_path(user), method: :delete %></td>
   </tr>
   <% end %>
 </table>
+</div>

@@ -1,7 +1,7 @@
 <div class="nested-fields">
   <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= link_to_remove_association "remove song", f %>
+    <p class='m-2'>曲名</p>
+    <%= f.text_field :title, class: 'w-50' %>
+    <%= link_to_remove_association "削除", f %>
   </div>
 </div>

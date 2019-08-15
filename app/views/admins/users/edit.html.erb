@@ -1,16 +1,19 @@
-<h1>ユーザー編集</h1>
-<%= form_with model: @user, url: admins_user_path(@user), local: true do |f| %>
-  <p>名前（姓・名）</p>
-  <%= f.text_field :first_name %><%= f.text_field :last_name %>
-  <p>名前カナ（姓・名）</p>
-  <%= f.text_field :kana_first_name %><%= f.text_field :kana_last_name %>
-  <p>郵便番号</p>
-  <span class="p-country-name" style="display:none;">Japan</span>
-  <%= f.text_field :postal_code, class: 'p-postal-code' %>
-  <p>住所</p>
-  <%= f.text_field :address, class: 'p-region p-locality p-street-address p-extended-address' %>
-  <p>メールアドレス</p>
-  <%= f.text_field :email %>
-
-  <div><%= f.submit '保存' %></div>
-<% end %>
+<div class="container">
+  <h1 class="m-5">ユーザー編集</h1>
+  <div class="w-75 d-flex justify-content-center">
+    <%= form_with model: @user, url: admins_user_path(@user), local: true, class: "h-adr" do |f| %>
+      <p class='m-2'>名前（姓・名）</p>
+      <%= f.text_field :first_name, class: 'mr-3' %><%= f.text_field :last_name %>
+      <p class='m-2'>名前カナ（姓・名）</p>
+      <%= f.text_field :kana_first_name, class: 'mr-3' %><%= f.text_field :kana_last_name %>
+      <p class='m-2'>郵便番号</p>
+      <span class="p-country-name" style="display:none;">Japan</span>
+      <%= f.text_field :postal_code, class: 'p-postal-code' %>
+      <p class='m-2'>住所</p>
+      <%= f.text_area :address, class: 'p-region p-locality p-street-address p-extended-address w-100' %>
+      <p class='m-2'>メールアドレス</p>
+      <%= f.text_field :email %>
+      <div><%= f.submit '保存', class: 'btn btn-primary mt-3 w-25' %></div>
+    <% end %>
+  </div>
+</div>

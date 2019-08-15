@@ -1,51 +1,51 @@
 <%= form_with(model: [:admins, @item], local: true) do |f| %>
   <div class="form">
-    <%= f.label :artist_id %>
-    <%= f.select :artist_id, options_from_collection_for_select(Artist.all, :id, :name) %>
+    <p class='m-2'>アーティスト</p>
+    <%= f.select :artist_id, options_from_collection_for_select(Artist.all, :id, :name), {}, class: 'w-50' %>
   </div>
 
   <div class="form">
-    <%= f.label :label_id %>
-    <%= f.select :label_id, options_from_collection_for_select(Label.all, :id, :name) %>
+    <p class='m-2'>レーベル</p>
+    <%= f.select :label_id, options_from_collection_for_select(Label.all, :id, :name), {}, class: 'w-50' %>
   </div>
 
   <div class="form">
-    <%= f.label :genre_id %>
-    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+    <p class='m-2'>ジャンル</p>
+    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {}, class: 'w-50' %>
   </div>
 
   <div class="form">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <p class='m-2'>シングル/アルバム名</p>
+    <%= f.text_field :title, class: 'w-50' %>
   </div>
 
   <div class="form">
-    <%= f.label :jacket_image %>
+    <p class='m-2'>ジャケット画像</p>
     <%= f.attachment_field :jacket_image %>
   </div>
 
   <div class="form">
-    <%= f.label :price %>
-    <%= f.number_field :price %>
+    <p class='m-2'>価格</p>
+    <%= f.number_field :price, class: 'w-50' %>
   </div>
 
   <div class="form">
-    <%= f.label :status %>
-    <%= f.select :status, options_for_select(Item.select_status) %>
+    <p class='m-2'>ステータス</p>
+    <%= f.select :status, options_for_select(Item.select_statuses), {}, class: 'w-50' %>
   </div>
 
   <div class="form">
-    <%= f.label :stock %>
-    <%= f.number_field :stock %>
+    <p class='m-2'>在庫数</p>
+    <%= f.number_field :stock, class: 'w-50' %>
   </div>
 
   <div>
-  <div class="links">
-      <%= link_to_add_association 'add disk', f, :disks %>
-    </div>
     <%= f.fields_for :disks do |disk| %>
       <%= render 'disk_fields', f: disk %>
     <% end %>
+      <div class="links">
+      <%= link_to_add_association 'ディスクを追加', f, :disks %>
+    </div>
   </div>
 
   <div class="submit">

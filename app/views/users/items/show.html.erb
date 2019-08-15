@@ -1,35 +1,39 @@
-<div>
-  <p><%= @item.genre.name %>/<%= @item.label.name %></p>
-  <h1><%= @item.title %>-<%= @item.artist.name %></h1>
-    <%= attachment_image_tag @item, :jacket_image, :fill, 100, 100 %>
-  <div>
-    <%= number_to_currency(@item.price, precision: 0, unit: '¥') %> | <%= @item.statuses %>
-  <div>
-  <select id="select-disk">
-  <% @item.disks.each_with_index do |disk, index| %>
-  <option value="<%= index+1 %>">ディスク<%= index+1 %></option>
-  <% end %>
-  </select>
+<div class="w-75 container p-3 ">
+  <div class="row">
+    <div class="col-5">
+      <h3><%= @item.genre.name %>/<%= @item.label.name %></h3>
+      <%= attachment_image_tag @item, :jacket_image, :fill, 250, 250 %>
+    </div>
+    <div class="col-7">
+      <h1><%= @item.title %>-<%= @item.artist.name %></h1>
+      <p><%= number_to_currency(@item.price, precision: 0, unit: '¥') %> | <%= @item.statuses %></p>
 
-  <div class="all-disk">
-    <% @item.disks.each_with_index do |disk, index| %>
-      <div id="disk-<%= index+1 %>" class="uncurrent-disk">
-        <ol>
-        <% disk.songs.each do |song| %>
-          <li><%= song.title %></li>
+      <select id="select-disk">
+        <% @item.disks.each_with_index do |disk, index| %>
+          <option value="<%= index+1 %>">ディスク<%= index+1 %></option>
         <% end %>
-        </ol>
-      </div>
-    <% end %>
-  </div>
-  <div><span>在庫数： <%= @item.stock %>枚</span></div>
-  <div>
-    <%= form_with model: CartItem.new, local: true do |f| %>
-      <%= f.hidden_field :item_id, value: @item.id %>
-      <%= f.number_field :amount %>
-      <span>枚</span>
+      </select>
 
-      <div><%= f.submit 'カートに追加' %></div>
-    <% end %>
+      <div class="all-disk">
+        <% @item.disks.each_with_index do |disk, index| %>
+          <div id="disk-<%= index+1 %>" class="uncurrent-disk">
+            <ol>
+            <% disk.songs.each do |song| %>
+              <li><%= song.title %></li>
+            <% end %>
+            </ol>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <span class="col-4">在庫数： <%= @item.stock %>枚</span>
+        <%= form_with model: CartItem.new, local: true do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.number_field :amount, class: 'col-2' %>
+          <span>枚</span>
+          <%= f.submit 'カートに追加', class: 'col-4 btn btn-link' %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
