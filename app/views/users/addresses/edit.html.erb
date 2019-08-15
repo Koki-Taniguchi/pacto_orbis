@@ -1,8 +1,16 @@
-<h1>配送先住所編集</h1>
-<%= form_with model: @address, local: true do |f| %>
-  <span>氏名</span><%= f.text_field :name %><br>
-  <span class="p-country-name" style="display:none;">Japan</span>
-  <span>郵便番号</span><%= f.text_field :postal_code, class: 'p-postal-code' %><br>
-  <span>住所</span><%= f.text_field :address, class: 'p-region p-locality p-street-address p-extended-address' %><br>
-  <%= f.submit '保存' %><%= link_to '戻る', new_order_path %>
-<% end %>
+<div class="container">
+  <h1>配送先住所編集</h1>
+  <div class="w-75 p-3">
+    <%= form_with model: @address, local: true, class: "h-adr" do |f| %>
+      <p class='m-2'>氏名</p>
+      <%= f.text_field :name %><br>
+      <span class="p-country-name" style="display:none;">Japan</span>
+      <p class='m-2'>郵便番号</p>
+      <%= f.text_field :postal_code, class: 'p-postal-code' %><br>
+      <p class='m-2'>住所</p>
+      <%= f.text_area :address, class: 'p-region p-locality p-street-address p-extended-address' %><br>
+      <%= f.submit '保存', class: 'btn btn-primary mt-3 w-25' %>
+      <%= link_to '戻る', new_order_path, class: 'btn btn-link mt-3 w-25' %>
+    <% end %>
+  </div>
+</div>

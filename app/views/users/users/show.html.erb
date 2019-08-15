@@ -1,12 +1,18 @@
-<h2>ユーザー情報</h2>
-<table>
-  <tr><th>名前（姓・名）</th><td><%= current_user.first_name %><%= current_user.last_name %></td></tr>
-  <tr><th>名前（カナ姓・カナ名）</th><td><%= current_user.kana_first_name %><%= current_user.kana_last_name %></td></tr>
-  <tr><th>郵便番号</th><td><%= current_user.postal_code %></td></tr>
-  <tr><th>住所</th><td><%= current_user.address %></td></tr>
-  <tr><th>電話番号</th><td><%= current_user.phone %></td></tr>
-  <tr><th>メールアドレス</th><td><%= current_user.email %></td></tr>
-</table>
-<div>
-  <%= link_to '購入履歴', orders_path %> <%= link_to '編集', edit_users_path %> <%= link_to '退会する', unsubscribe_confirm_users_path %>
+<div class="container">
+  <h2 class="p-3">ユーザー情報</h2>
+  <div class="p-3">
+    <table class="table">
+      <tr><th>名前（姓・名）</th><td><%= current_user.first_name %><%= current_user.last_name %></td></tr>
+      <tr><th>名前（カナ姓・カナ名）</th><td><%= current_user.kana_first_name %><%= current_user.kana_last_name %></td></tr>
+      <tr><th>郵便番号</th><td><%= current_user.postal_code %></td></tr>
+      <tr><th>住所</th><td><%= current_user.address %></td></tr>
+      <tr><th>電話番号</th><td><%= current_user.phone %></td></tr>
+      <tr><th>メールアドレス</th><td><%= current_user.email %></td></tr>
+    </table>
+  </div>
+  <div class="float-right">
+    <%= link_to '購入履歴', orders_path, class: 'mr-3' %>
+    <%= link_to '編集', edit_users_path, class: 'mr-3' %>
+    <%= link_to '退会する', unsubscribe_confirm_users_path %>
+  </div>
 </div>

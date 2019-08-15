@@ -1,12 +1,35 @@
-<div>
-<% @items.each do |item| %>
-  <div>
-    <%= attachment_image_tag item, :jacket_image, :fill, 100, 100 %>
-    <h1><%= item.title %> - <%= item.artist.name %></h1>
-    <div>
-      <span><%= item.first_song.title %>...</span><span>残り<%= item.stock %></span>
-      <%= link_to "show", item_path(item) %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 border p-4">
+      <h4>ジャンル</h4>
+      <ul>
+        <% Genre.order("RAND()").limit(10).each do |genre| %>
+          <li><%= genre.name %></li>
+        <% end %>
+      </ul>
+      <h4>アーティスト</h4>
+      <ul>
+        <% Artist.order("RAND()").limit(10).each do |artist| %>
+          <li><%= artist.name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-lg-8 offset-lg-1 border p-3">
+      <h2>New Arrival</h2>
+      <% @items.each do |item| %>
+        <div class="row border m-3">
+          <%= attachment_image_tag item, :jacket_image, :fill, 200, 200, class: "col-4" %>
+          <div class="p-3 col-7">
+            <h3><%= item.title %> - <%= item.artist.name %></h3>
+            <p class="h-50"></p>
+            <p class="">
+              <span class=""><%= item.first_song.title %>...</span>
+              <%= link_to "show", item_path(item), class: "float-right" %>
+              <span class="float-right mr-2">残り<%= item.stock %>枚</span>
+            </p>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-<% end %>
 </div>
