@@ -11,8 +11,8 @@ class Item < ApplicationRecord
   attachment :jacket_image
 
   enum select_status: {
-    on_sale: true,
-    sold_out: false
+    "販売中": true,
+    "売り切れ": false
   }
 
   def first_song

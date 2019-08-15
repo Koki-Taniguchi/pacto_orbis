@@ -1,6 +1,5 @@
-<h1>アーティスト一覧</h1>
-
 <div class="container">
+  <h1 class="m-5">アーティスト一覧</h1>
   <div class="row">
     <div class="col-lg-3">
       <%= form_with(model: [:admins, @artist], local: true) do |f| %>
@@ -8,11 +7,11 @@
           <%= f.label :name %><br>
           <%= f.text_field :name %>
         </div>
-        <%= f.submit "登録", class: "btn btn-primary" %>
+        <%= f.submit "登録", class: "btn btn-primary mt-3" %>
       <% end %>
     </div>
     <div class="col-lg-9">
-      <table>
+      <table class="table">
         <% @artists.each do |artist| %>
           <tr>
             <td><%= artist.name %></td>

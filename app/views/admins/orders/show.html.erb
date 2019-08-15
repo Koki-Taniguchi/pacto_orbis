@@ -1,32 +1,35 @@
-<div>
-<% @order.order_details.each do |order_detail| %>
-  <div>
-    <%= attachment_image_tag order_detail.item, :jacket_image, :fill, 100, 100 %>
-    <h1><%= order_detail.item.title %> - <%= order_detail.item.artist.name %></h1>
-    <div>
-      <span><%= number_to_currency(order_detail.cd_price, precision: 0, unit: '¥') %> × <%= order_detail.cd_amount %>枚</span>
-    </div>
-    <div>
-      <span>在庫 <%= order_detail.item.stock %>枚</span><br>
-      <%= order_detail.item.statuses %>
-
-      <div>
-        <p>〒 <%= @order.postal_code %></p>
-        <p><%= @order.address %></p>
-      </div>
-      <div>
-        <p>支払方法: <%= @order.display_payment %></p>
-        <p>送料: <%= number_to_currency(@order.delivery_cost, precision: 0, unit: '¥') %></p>
-        <p>合計金額: <%= number_to_currency(@order.order_details.sum(&:total_price), precision: 0, unit: '¥') %></p>
-      </div>
-
-      <div>
-        <%= form_with(model: [:admins, @order], local: true) do |f| %>
-          <%= f.select :status, options_for_select(Order.select_statuses, :selected=>@order.status) %>
-          <%= f.submit '変更保存' %>
-        <% end %>
+<div class="container">
+  <% @order.order_details.each do |order_detail| %>
+    <div class="row m-5 p-3 border-bottom">
+      <%= attachment_image_tag order_detail.item, :jacket_image, :fill, 100, 100 %>
+      <div class="col-5">
+        <h1><%= order_detail.item.title %> - <%= order_detail.item.artist.name %></h1>
+        <div>
+          <span><%= number_to_currency(order_detail.cd_price, precision: 0, unit: '¥') %> × <%= order_detail.cd_amount %>枚</span>
+        </div>
+        <div>
+          <span>在庫 <%= order_detail.item.stock %>枚</span><br>
+          <%= order_detail.item.statuses %>
+        </div>
       </div>
     </div>
+  <% end %>
+
+<div class="row">
+  <div class="col-4 offset-2">
+    <p>〒 <%= @order.postal_code %></p>
+    <p><%= @order.address %></p>
   </div>
-<% end %>
+  <div class="col-3">
+    <p>支払方法: <%= @order.display_payment %></p>
+    <p>送料: <%= number_to_currency(@order.delivery_cost, precision: 0, unit: '¥') %></p>
+    <p>合計金額: <%= number_to_currency(@order.order_details.sum(&:total_price), precision: 0, unit: '¥') %></p>
+  </div>
+  <div class="col-3">
+    <%= form_with(model: [:admins, @order], local: true) do |f| %>
+      <%= f.select :status, options_for_select(Order.select_statuses, :selected=>@order.status) %>
+      <%= f.submit '変更保存' %>
+    <% end %>
+  </div>
+  </div>
 </div>

@@ -27,7 +27,7 @@ class Admins::ItemsController < Admins::Base
   end
 
   def update
-    if @item.update
+    if @item.update(item_params)
       redirect_to admins_item_path(@item)
     else
       render :edit
