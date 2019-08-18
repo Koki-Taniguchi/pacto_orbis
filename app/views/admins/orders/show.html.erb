@@ -1,7 +1,7 @@
 <div class="container">
   <% @order.order_details.each do |order_detail| %>
     <div class="row m-5 p-3 border-bottom">
-      <%= attachment_image_tag order_detail.item, :jacket_image, :fill, 100, 100 %>
+      <%= attachment_image_tag order_detail.item, :jacket_image, :fill, 100, 100, fallback: "no_image.jpg", :size =>'100x100' %>
       <div class="col-5">
         <h1><%= order_detail.item.title %> - <%= order_detail.item.artist.name %></h1>
         <div>

@@ -1,4 +1,6 @@
 class Users::CartItemsController < Users::Base
+  before_action :authenticate_user!
+  before_action :check_item_stock, only: [:create, :update]
   def index
     @cart_items = current_user.cart_items.where(user_id: current_user.id)
   end
@@ -36,6 +38,12 @@ class Users::CartItemsController < Users::Base
 
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :amount)
+  end
+
+  def check_item_stock
+    if params[:cart_item][:amount].to_i > Item.find(params[:cart_item][:item_id]).stock
+      redirect_back(fallback_location: root_path)
+    end
   end
 
 end

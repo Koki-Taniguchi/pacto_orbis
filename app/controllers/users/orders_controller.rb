@@ -1,4 +1,5 @@
 class Users::OrdersController < Users::Base
+  before_action :authenticate_user!
   def index
     @orders = current_user.orders
   end
@@ -33,7 +34,8 @@ class Users::OrdersController < Users::Base
           od.item_id = cart_item.item_id
           od.cd_amount = cart_item.amount
           od.cd_price = cart_item.item.price
-          byebug
+          cart_item.item.stock -= cart_item.amount
+          cart_item.item.save!
           cart_item.destroy!
         end
 

@@ -1,10 +1,11 @@
 <div class="container">
   <% @cart_items.each do |cart_item| %>
     <div class="row m-5">
-      <%= attachment_image_tag cart_item.item, :jacket_image, :fill, 150, 150, class: 'col-2 offset-2' %>
+      <%= attachment_image_tag cart_item.item, :jacket_image, :fill, 150, 150, class: 'col-2 offset-2', fallback: "no_image.jpg", :size =>'150x150' %>
       <div class="col-5">
         <h1><%= cart_item.item.title %> - <%= cart_item.item.artist.name %></h1>
         <%= form_with model: cart_item, local: true do |f| %>
+          <%= f.hidden_field :item_id, value: cart_item.item_id %>
         <div>
           <span><%= number_to_currency(cart_item.item.price, precision: 0, unit: '¥') %> × <%= f.number_field :amount, class: 'amount-form' %>枚</span>
         </div>

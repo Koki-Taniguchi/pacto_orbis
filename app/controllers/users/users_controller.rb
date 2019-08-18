@@ -1,4 +1,5 @@
 class Users::UsersController < Users::Base
+  before_action :authenticate_user!
   def show
   end
 
