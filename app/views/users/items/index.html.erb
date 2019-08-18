@@ -18,7 +18,7 @@
       <h2>New Arrival</h2>
       <% @items.each do |item| %>
         <div class="row border m-3">
-          <%= attachment_image_tag item, :jacket_image, :fill, 200, 200, class: "col-4" %>
+          <%= attachment_image_tag item, :jacket_image, :fill, 200, 200, class: "col-4", fallback: "no_image.jpg", :size =>'200x200' %>
           <div class="p-3 col-7">
             <h3><%= item.title %> - <%= item.artist.name %></h3>
             <p class="h-50"></p>

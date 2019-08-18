@@ -1,4 +1,5 @@
 class Users::AddressesController < Users::Base
+  before_action :authenticate_user!
   def create
     address = Address.new(address_params)
     address.user_id = current_user.id
