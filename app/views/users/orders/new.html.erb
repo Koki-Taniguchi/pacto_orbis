@@ -2,6 +2,8 @@
   <div class="w-75 mx-auto">
     <h2 class="m-3">送付先</h2>
     <%= form_with model: Order.new, local: true, class: "h-adr" do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+    <%= f.hidden_field :debug, value: 1 %>
     <div>
       <label><%= f.radio_button :address_select, 'self' %>現住所を使う</label>
       <p>

@@ -2,6 +2,9 @@ class Order < ApplicationRecord
   belongs_to :user
 
   has_many :order_details
+  validates :payment, presence: true
+  validates :postal_code, presence: true
+  validates :address, presence: true
 
   enum select_status: {
     "受付" => 0,

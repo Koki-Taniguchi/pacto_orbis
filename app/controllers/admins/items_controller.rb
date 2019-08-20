@@ -21,8 +21,10 @@ class Admins::ItemsController < Admins::Base
   def create
     @item = Item.new(item_params)
     if @item.save
+      flash[:notice] = "新規作成に成功しました"
       redirect_to admins_item_path(@item)
     else
+      flash[:error] = "新規作成に失敗しました"
       render :new
     end
   end
@@ -32,14 +34,18 @@ class Admins::ItemsController < Admins::Base
 
   def update
     if @item.update(item_params)
+      flash[:notice] = "更新に成功しました"
       redirect_to admins_item_path(@item)
     else
+      flash[:error] = "更新に失敗しました"
       render :edit
     end
   end
 
   def destroy
-    @item.destroy
+    if @item.update({status: true})
+      flash[:notice] = "商品を「売り切れ」にしました"
+    end
     redirect_to admins_items_path
   end
 

@@ -17,15 +17,19 @@ class Users::AddressesController < Users::Base
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
+      flash[:notice] = "更新に成功しました"
       redirect_to new_order_path
     else
+      flash[:error] = "更新に失敗しました"
       render :edit
     end
   end
 
   def destroy
     address = Address.find(params[:id])
-    address.destroy
+    if address.destroy
+      flash[:notice] = "削除に成功しました"
+    end
     redirect_to new_order_path
   end
 

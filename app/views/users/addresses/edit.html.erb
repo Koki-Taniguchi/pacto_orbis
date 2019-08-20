@@ -2,6 +2,7 @@
   <h1>配送先住所編集</h1>
   <div class="w-75 p-3">
     <%= form_with model: @address, local: true, class: "h-adr" do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
       <p class='m-2'>氏名</p>
       <%= f.text_field :name %><br>
       <span class="p-country-name" style="display:none;">Japan</span>

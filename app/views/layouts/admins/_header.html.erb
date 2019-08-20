@@ -42,4 +42,15 @@
       </div>
     </nav>
   </div>
+  <div class="container p-3">
+    <a class="text-success">
+      <%= flash[:notice] %>
+    </a>
+    <a class="text-warning">
+      <%= flash[:warning] %>
+    </a>
+    <a class="text-danger">
+      <%= flash[:error] %>
+    </a>
+  </div>
 </header>

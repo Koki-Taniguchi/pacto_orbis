@@ -1,4 +1,5 @@
 <%= form_with(model: [:admins, @item], local: true) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
   <div class="form">
     <p class='m-2'>アーティスト</p>
     <%= f.select :artist_id, options_from_collection_for_select(Artist.all, :id, :name), {}, class: 'w-50' %>
