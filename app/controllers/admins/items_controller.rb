@@ -2,7 +2,11 @@ class Admins::ItemsController < Admins::Base
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    params[:search] ? @items = Item.search(params[:search]) : @items = Item.all
+    if params[:search].present?
+      @items = Item.search(params[:search]).page(params[:page]).per(10)
+    else
+      @items = Item.page(params[:page]).per(10)
+    end
   end
 
   def show

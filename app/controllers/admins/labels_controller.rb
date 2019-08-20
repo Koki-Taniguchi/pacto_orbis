@@ -1,6 +1,6 @@
 class Admins::LabelsController < Admins::Base
   def index
-    @labels = Label.all
+    @labels = Label.page(params[:page]).per(10)
     @label = Label.new
   end
 
@@ -9,14 +9,14 @@ class Admins::LabelsController < Admins::Base
     if @label.save
       redirect_to admins_labels_path
     else
-      @labels = Label.all
+      @labels = Label.page(params[:page]).per(10)
       render :index
     end
   end
 
   def edit
     @label = Label.find(params[:id])
-    @labels = Label.all
+    @labels = Label.page(params[:page]).per(10)
     render :index
   end
 
@@ -25,7 +25,7 @@ class Admins::LabelsController < Admins::Base
     if @label.update(label_params)
       redirect_to admins_labels_path
     else
-      @labels = Label.all
+      @labels = Label.page(params[:page]).per(10)
       render :index
     end
   end

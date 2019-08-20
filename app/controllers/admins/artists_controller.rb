@@ -1,6 +1,6 @@
 class Admins::ArtistsController < Admins::Base
   def index
-    @artists = Artist.all
+    @artists = Artist.page(params[:page]).per(10)
     @artist = Artist.new
   end
 
@@ -9,14 +9,14 @@ class Admins::ArtistsController < Admins::Base
     if @artist.save
       redirect_to admins_artists_path
     else
-      @artists = Artist.all
+      @artists = Artist.page(params[:page]).per(10)
       render :index
     end
   end
 
   def edit
     @artist = Artist.find(params[:id])
-    @artists = Artist.all
+    @artists = Artist.page(params[:page]).per(10)
     render :index
   end
 
@@ -25,7 +25,7 @@ class Admins::ArtistsController < Admins::Base
     if @artist.update(artist_params)
       redirect_to admins_artists_path
     else
-      @artists = Artist.all
+      @artists = Artist.page(params[:page]).per(10)
       render :index
     end
   end

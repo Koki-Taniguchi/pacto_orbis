@@ -1,6 +1,6 @@
 class Admins::GenresController < Admins::Base
   def index
-    @genres = Genre.all
+    @genres = Genre.page(params[:page]).per(10)
     @genre = Genre.new
   end
 
@@ -9,7 +9,7 @@ class Admins::GenresController < Admins::Base
     if @genre.save
       redirect_to admins_genres_path
     else
-      @genres = Genre.all
+      @genres = Genre.page(params[:page]).per(10)
       render :index
     end
   end
@@ -25,7 +25,7 @@ class Admins::GenresController < Admins::Base
     if @genre.update(genre_params)
       redirect_to admins_genres_path
     else
-      @genres = Genre.all
+      @genres = Genre.page(params[:page]).per(10)
       render :index
     end
   end

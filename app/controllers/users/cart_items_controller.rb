@@ -2,7 +2,7 @@ class Users::CartItemsController < Users::Base
   before_action :authenticate_user!
   before_action :check_item_stock, only: [:create, :update]
   def index
-    @cart_items = current_user.cart_items.where(user_id: current_user.id)
+    @cart_items = current_user.cart_items.page(params[:page]).per(10)
   end
 
   def create
