@@ -4,13 +4,13 @@
       <h4>ジャンル</h4>
       <ul>
         <% Genre.order("RAND()").limit(10).each do |genre| %>
-          <li><%= genre.name %></li>
+          <li><%= link_to genre.name, items_path(search: genre.name) %></li>
         <% end %>
       </ul>
       <h4>アーティスト</h4>
       <ul>
         <% Artist.order("RAND()").limit(10).each do |artist| %>
-          <li><%= artist.name %></li>
+          <li><%= link_to artist.name, items_path(search: artist.name) %></li>
         <% end %>
       </ul>
     </div>
