@@ -27,6 +27,7 @@
   </div>
   <div class="col-3">
     <%= form_with(model: [:admins, @order], local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
       <%= f.select :status, options_for_select(Order.select_statuses, :selected=>@order.status) %>
       <%= f.submit '変更保存' %>
     <% end %>

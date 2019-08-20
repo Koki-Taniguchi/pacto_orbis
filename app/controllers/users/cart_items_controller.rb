@@ -15,8 +15,10 @@ class Users::CartItemsController < Users::Base
     end
 
     if cart_item.save
+      flash[:notice] = "カートに追加しました"
       redirect_to cart_items_path
     else
+      flash[:error] = "カートに追加できませんでした"
       @item = Item.find(params[:cart_item][:item_id])
       render 'users/items/show'
     end
@@ -24,13 +26,19 @@ class Users::CartItemsController < Users::Base
 
   def update
     cart_item = CartItem.find(params[:id])
-    cart_item.update(cart_item_params)
+    if cart_item.update(cart_item_params)
+      flash[:notice] = "枚数の更新に成功しました"
+    else
+      flash[:error] = "枚数の更新できませんでした"
+    end
     redirect_to cart_items_path
   end
 
   def destroy
     cart_item = CartItem.find(params[:id])
-    cart_item.destroy
+    if cart_item.destroy
+      flash[:notice] = "削除に成功しました"
+    end
     redirect_to cart_items_path
   end
 

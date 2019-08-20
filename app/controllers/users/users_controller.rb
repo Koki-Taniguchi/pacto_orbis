@@ -10,8 +10,10 @@ class Users::UsersController < Users::Base
   def update
     @user = current_user
     if @user.update(user_params)
+      flash[:notice] = "更新に成功しました"
       redirect_to users_path
     else
+      flash[:error] = "更新に失敗しました"
       render :edit
     end
   end

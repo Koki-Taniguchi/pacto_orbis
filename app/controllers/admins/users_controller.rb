@@ -13,14 +13,18 @@ class Admins::UsersController < Admins::Base
 
   def update
     if @user.update(user_params)
+      flash[:notice] = "更新に成功しました"
       redirect_to admins_user_path(@user)
     else
+      flash[:error] = "更新に失敗しました"
       render :edit
     end
   end
 
   def destroy
-    @user.destroy
+    if @user.destroy
+      flash[:notice] = "削除に成功しました"
+    end
     redirect_to admins_users_path
   end
 

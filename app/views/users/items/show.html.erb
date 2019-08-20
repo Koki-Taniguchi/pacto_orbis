@@ -28,6 +28,7 @@
       <div class="row">
         <span class="col-4">在庫数： <%= @item.stock %>枚</span>
         <%= form_with model: CartItem.new, local: true do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
           <%= f.hidden_field :item_id, value: @item.id %>
           <%= f.number_field :amount, class: 'col-2' %>
           <span>枚</span>

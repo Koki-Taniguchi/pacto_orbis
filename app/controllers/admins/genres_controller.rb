@@ -7,9 +7,11 @@ class Admins::GenresController < Admins::Base
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
+      flash[:notice] = "新規作成に成功しました"
       redirect_to admins_genres_path
     else
       @genres = Genre.page(params[:page]).per(10)
+      flash[:error] = "新規作成に失敗しました"
       render :index
     end
   end
@@ -23,16 +25,20 @@ class Admins::GenresController < Admins::Base
   def update
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
+      flash[:notice] = "更新に成功しました"
       redirect_to admins_genres_path
     else
       @genres = Genre.page(params[:page]).per(10)
+      flash[:error] = "更新に失敗しました"
       render :index
     end
   end
 
   def destroy
     genre = Genre.find(params[:id])
-    genre.destroy
+    if genre.destroy
+      flash[:notice] = "削除に成功しました"
+    end
     redirect_to admins_genres_path
   end
 

@@ -47,6 +47,7 @@ class Users::OrdersController < Users::Base
       if order.persisted?
         redirect_to completion_orders_path
       else
+        flash[:error] = "購入に失敗しました"
         render :new
       end
     end

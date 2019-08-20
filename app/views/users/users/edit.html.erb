@@ -2,6 +2,7 @@
   <h1>ユーザー編集</h1>
   <div class="w-75 d-flex justify-content-center">
     <%= form_with model: @user, url: users_path, local: true, class: "h-adr" do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
       <p class='m-2'>名前（姓・名）</p>
       <%= f.text_field :first_name, class: 'mr-3' %><%= f.text_field :last_name %>
       <p class='m-2'>名前カナ（姓・名）</p>

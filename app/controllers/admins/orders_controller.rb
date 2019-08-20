@@ -10,8 +10,10 @@ class Admins::OrdersController < Admins::Base
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
+      flash[:notice] = "更新に成功しました"
       redirect_to admins_order_path(@order)
     else
+      flash[:error] = "更新に失敗しました"
       render :show
     end
   end

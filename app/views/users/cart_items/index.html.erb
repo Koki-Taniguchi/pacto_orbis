@@ -5,6 +5,7 @@
       <div class="col-5">
         <h1><%= cart_item.item.title %> - <%= cart_item.item.artist.name %></h1>
         <%= form_with model: cart_item, local: true do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
           <%= f.hidden_field :item_id, value: cart_item.item_id %>
         <div>
           <span><%= number_to_currency(cart_item.item.price, precision: 0, unit: '¥') %> × <%= f.number_field :amount, class: 'amount-form' %>枚</span>
