@@ -21,6 +21,8 @@
     </div>
   <% end %>
 
+  <%= paginate @cart_items %>
+
   <div class="float-right mr-5">
     <span>
       合計金額: <%= number_to_currency(@cart_items.sum(&:total_price), precision: 0, unit: '¥') %>
