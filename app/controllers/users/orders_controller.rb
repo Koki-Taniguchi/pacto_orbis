@@ -32,6 +32,7 @@ class Users::OrdersController < Users::Base
         od.cd_amount = cart_item.amount
         od.cd_price = cart_item.item.price
         cart_item.item.stock -= cart_item.amount
+        cart_item.item.status = false if cart_item.item.stock <= 0
         cart_item.item.save!
         cart_item.destroy!
       end
@@ -68,4 +69,5 @@ class Users::OrdersController < Users::Base
       render :new
     end
   end
+  
 end

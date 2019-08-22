@@ -33,6 +33,7 @@ class Admins::ItemsController < Admins::Base
   end
 
   def update
+    params[:item][:status] = "false" if params[:item][:stock].to_i <= 0
     if @item.update(item_params)
       flash[:notice] = "更新に成功しました"
       redirect_to admins_item_path(@item)
@@ -43,7 +44,7 @@ class Admins::ItemsController < Admins::Base
   end
 
   def destroy
-    if @item.update({status: true})
+    if @item.update({status: false})
       flash[:notice] = "商品を「売り切れ」にしました"
     end
     redirect_to admins_items_path
