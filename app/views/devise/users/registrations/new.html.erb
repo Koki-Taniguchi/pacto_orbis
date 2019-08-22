@@ -3,7 +3,7 @@
 <div class="container">
   <h1>Log in</h1>
   <div class="w-75 mx-auto">
-  <%= form_for(resource, as: resource_name, html: {class: "h-adr"}, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, html: {class: "h-adr"}, url: registration_path(resource_name)) do |f| %>
 
   <%= render "devise/shared/error_messages", resource: resource %>
 
