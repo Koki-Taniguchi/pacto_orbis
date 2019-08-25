@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :configure_permitted_parameters, if: :devise_controller?
-  NOW_POSTAGE = 500
-  NOW_POSTAGE.freeze
 
   protected
 

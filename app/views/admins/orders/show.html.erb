@@ -5,7 +5,7 @@
       <div class="col-5">
         <h1><%= order_detail.item.title %> - <%= order_detail.item.artist.name %></h1>
         <div>
-          <span><%= number_to_currency(order_detail.cd_price, precision: 0, unit: '¥') %> × <%= order_detail.cd_amount %>枚</span>
+          <span><%= number_to_currency(order_detail.cd_price, precision: 0, unit: '¥') %>(税抜) × <%= order_detail.cd_amount %>枚</span>
         </div>
         <div>
           <span>在庫 <%= order_detail.item.stock %>枚</span><br>
@@ -17,13 +17,14 @@
 
 <div class="row">
   <div class="col-4 offset-2">
+    <p>購入者：<%= @order.user.first_name %> <%= @order.user.last_name %></p>
     <p>〒 <%= @order.postal_code %></p>
     <p><%= @order.address %></p>
   </div>
   <div class="col-3">
-    <p>支払方法: <%= @order.display_payment %></p>
-    <p>送料: <%= number_to_currency(@order.delivery_cost, precision: 0, unit: '¥') %></p>
-    <p>合計金額: <%= number_to_currency(@order.order_details.sum(&:total_price), precision: 0, unit: '¥') %></p>
+    <p>支払方法：<%= @order.display_payment %></p>
+    <p>送料：<%= number_to_currency(@order.delivery_cost, precision: 0, unit: '¥') %></p>
+    <p>合計金額(税込)：<%= number_to_currency(@order.order_details.sum(&:total_price) * Item::TAX, precision: 0, unit: '¥') %></p>
   </div>
   <div class="col-3">
     <%= form_with(model: [:admins, @order], local: true) do |f| %>

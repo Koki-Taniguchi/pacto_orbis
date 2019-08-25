@@ -6,7 +6,7 @@
     </div>
     <div class="col-7">
       <h1><%= @item.title %>-<%= @item.artist.name %></h1>
-      <p><%= number_to_currency(@item.price, precision: 0, unit: '¥') %> | <%= @item.statuses %></p>
+      <p><%= number_to_currency(@item.price * Item::TAX, precision: 0, unit: '¥') %>(税込) | <%= @item.statuses %></p>
 
       <select id="select-disk">
         <% @item.disks.each_with_index do |disk, index| %>
@@ -27,12 +27,14 @@
       </div>
       <div class="row">
         <span class="col-4">在庫数： <%= @item.stock %>枚</span>
-        <%= form_with model: CartItem.new, local: true do |f| %>
-          <%= render 'layouts/error_messages', model: f.object %>
-          <%= f.hidden_field :item_id, value: @item.id %>
-          <%= f.number_field :amount, class: 'col-2' %>
-          <span>枚</span>
-          <%= f.submit 'カートに追加', class: 'col-4 btn btn-link' %>
+        <% if @item.status %>
+          <%= form_with model: CartItem.new, local: true do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.number_field :amount, class: 'col-2' %>
+            <span>枚</span>
+            <%= f.submit 'カートに追加', class: 'col-4 btn btn-link' %>
+          <% end %>
         <% end %>
       </div>
     </div>

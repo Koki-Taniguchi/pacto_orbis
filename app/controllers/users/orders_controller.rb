@@ -37,8 +37,8 @@ class Users::OrdersController < Users::Base
         cart_item.destroy!
       end
 
-      order.delivery_cost = NOW_POSTAGE
-      order.total_price = order.order_details.sum(&:total_price) + NOW_POSTAGE
+      order.delivery_cost = Order::NOW_POSTAGE
+      order.total_price = (order.order_details.sum(&:total_price) + Order::NOW_POSTAGE) * Item::TAX
       order.save!
     end
     

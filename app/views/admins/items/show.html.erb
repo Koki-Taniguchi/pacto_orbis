@@ -6,7 +6,7 @@
     </div>
     <div class="col-7">
       <h1><%= @item.title %>-<%= @item.artist.name %></h1>
-      <p><%= number_to_currency(@item.price, precision: 0, unit: '¥') %> | <%= @item.statuses %></p>
+      <p><%= number_to_currency(@item.price * Item::TAX, precision: 0, unit: '¥') %>(税込) | <%= @item.statuses %></p>
 
       <select id="select-disk">
         <% @item.disks.each_with_index do |disk, index| %>

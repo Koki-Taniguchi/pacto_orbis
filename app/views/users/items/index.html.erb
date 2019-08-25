@@ -21,11 +21,15 @@
           <%= attachment_image_tag item, :jacket_image, :fill, 200, 200, class: "col-4", fallback: "no_image.jpg", :size =>'200x200' %>
           <div class="p-3 col-7">
             <h3><%= item.title %> - <%= item.artist.name %></h3>
-            <p class="h-50"></p>
+            <p class="h-25"></p>
             <p class="">
               <span class=""><%= item.first_song.title %>...</span>
               <%= link_to "show", item_path(item), class: "float-right" %>
-              <span class="float-right mr-2">残り<%= item.stock %>枚</span>
+              <% if item.status %> 
+                <span class="float-right mr-2">残り<%= item.stock %>枚</span>
+              <% else %>
+                <span class="float-right mr-2"><%= item.statuses %></span>
+              <% end %>
             </p>
           </div>
         </div>

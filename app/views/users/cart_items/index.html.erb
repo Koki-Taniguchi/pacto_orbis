@@ -8,7 +8,7 @@
           <%= render 'layouts/error_messages', model: f.object %>
           <%= f.hidden_field :item_id, value: cart_item.item_id %>
         <div>
-          <span><%= number_to_currency(cart_item.item.price, precision: 0, unit: '¥') %> × <%= f.number_field :amount, class: 'amount-form' %>枚</span>
+          <span><%= number_to_currency(cart_item.item.price, precision: 0, unit: '¥') %>(税抜) × <%= f.number_field :amount, class: 'amount-form' %>枚</span>
         </div>
         <div>
           <span>在庫 <%= cart_item.item.stock %>枚</span><br>
@@ -26,7 +26,7 @@
 
   <div class="float-right mr-5">
     <span>
-      合計金額: <%= number_to_currency(@cart_items.sum(&:total_price), precision: 0, unit: '¥') %>
+      合計金額(税込)：<%= number_to_currency(@cart_items.sum(&:total_price) * Item::TAX, precision: 0, unit: '¥') %>
       <%= link_to '購入に進む', new_order_path %>
     </span>
   </div>

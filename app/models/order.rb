@@ -6,6 +6,9 @@ class Order < ApplicationRecord
   validates :postal_code, presence: true
   validates :address, presence: true
 
+  NOW_POSTAGE = 500
+  NOW_POSTAGE.freeze
+
   enum select_status: {
     "受付" => 0,
     "商品準備中" => 1,

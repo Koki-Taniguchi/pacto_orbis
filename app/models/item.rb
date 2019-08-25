@@ -14,6 +14,9 @@ class Item < ApplicationRecord
 
   attachment :jacket_image
 
+  TAX = 1.08
+  TAX.freeze
+
   enum select_status: {
     "販売中": true,
     "売り切れ": false

@@ -5,13 +5,14 @@
       <div class="col-4 offset-2 py-3">
         <p><%= order.created_at.strftime("%Y年%m月%d日") %></p>
         <table class="table">
-          <tr><th>商品タイトル</th><th>枚数</th><th>合計金額</th></tr>
+          <tr><th>商品タイトル</th><th>枚数</th><th>合計金額(税込)</th></tr>
           <% order.order_details.each do |od| %>
-            <tr><td><%= od.item.title %></td><td><%= od.cd_amount %></td><td><%= number_to_currency(od.total_price, precision: 0, unit: '¥') %></td></tr>
+            <tr><td><%= od.item.title %></td><td><%= od.cd_amount %></td><td><%= number_to_currency(od.total_price * Item::TAX, precision: 0, unit: '¥') %></td></tr>
           <% end %>
         </table>
       </div>
       <div class="col-4 offset-2 py-5">
+        <p>購入者：<%= order.user.first_name %> <%= order.user.last_name %></p>
         <p>ステータス：<%= order.display_status %></p>
         <p>支払方法：<%= order.display_payment %></p>
         <p>発送先：<%= order.address %></p>
