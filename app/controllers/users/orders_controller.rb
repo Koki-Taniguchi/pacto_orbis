@@ -38,7 +38,7 @@ class Users::OrdersController < Users::Base
       end
 
       order.delivery_cost = Order::NOW_POSTAGE
-      order.total_price = (order.order_details.sum(&:total_price) + Order::NOW_POSTAGE) * Item::TAX
+      order.total_price = order.order_details.sum(&:total_price) * Item::TAX  + Order::NOW_POSTAGE
       order.save!
     end
     

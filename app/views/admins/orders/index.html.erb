@@ -17,7 +17,7 @@
         <p>支払方法：<%= order.display_payment %></p>
         <p>発送先：<%= order.address %></p>
         <p>送料：<%= number_to_currency(order.delivery_cost, precision: 0, unit: '¥') %></p>
-        <p>合計金額：<%= number_to_currency(order.total_price, precision: 0, unit: '¥') %></p>
+        <p>合計金額(合計金額)：<%= number_to_currency(order.total_price, precision: 0, unit: '¥') %></p>
       </div>
     </div>
     <% end %>

@@ -10,7 +10,6 @@
           <%= attachment_image_tag item, :jacket_image, :fill, 100, 100, class: "col-4", fallback: "no_image.jpg", :size =>'100x100' %>
           <div class="col-7">
             <h4><%= item.title %> - <%= item.artist.name %></h4>
-            <p class="h-25"></p>
             <p>
               <span class=""><%= item.first_song.title %>...</span>
               <%= link_to "show", admins_item_path(item), class: "float-right" %>
