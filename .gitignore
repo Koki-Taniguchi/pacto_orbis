@@ -30,6 +30,7 @@ config/master.key
 ## Environment normalization:
 /.bundle
 /vendor/bundle
+vendor/bundle./
 
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
@@ -66,4 +67,8 @@ yarn-debug.log*
 !/storage/.keep
 
 # mysql socket
-config/database.yml
+/config/database.yml
+
+#vscode
+.vscode/
+
