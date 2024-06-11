@@ -1,25 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## CDのECサイト
 
-Things you may want to cover:
+できること
+- ユーザー機能
+  - CDの購入
+  - カート機能
+  - 購入履歴
+  - 住所の登録・更新・削除
+- 管理者機能
+  - CDの登録・編集・削除
+  - アーティストの登録・編集・削除
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# pacto_orbis
